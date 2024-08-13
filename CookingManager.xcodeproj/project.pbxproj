@@ -96,11 +96,16 @@
 		B5AD9CEB2C67082E006E1A01 /* CookingManager */ = {
 			isa = PBXGroup;
 			children = (
-				B5AD9CEC2C67082E006E1A01 /* CookingManagerApp.swift */,
 				B5AD9CEE2C67082E006E1A01 /* ContentView.swift */,
+				B5AD9CEC2C67082E006E1A01 /* CookingManagerApp.swift */,
 				B5AD9CF02C67082E006E1A01 /* Item.swift */,
 				B5AD9CF22C67082F006E1A01 /* Assets.xcassets */,
+				B5AD9D1C2C6AF2A6006E1A01 /* Appearance */,
+				B5AD9D1A2C671772006E1A01 /* Components */,
+				B5AD9D182C67172D006E1A01 /* Models */,
 				B5AD9CF42C67082F006E1A01 /* Preview Content */,
+				B5AD9D192C671761006E1A01 /* Screens */,
+				B5AD9D1B2C671843006E1A01 /* Services */,
 			);
 			path = CookingManager;
 			sourceTree = "<group>";
@@ -128,6 +133,41 @@
 				B5AD9D0B2C67082F006E1A01 /* CookingManagerUITestsLaunchTests.swift */,
 			);
 			path = CookingManagerUITests;
+			sourceTree = "<group>";
+		};
+		B5AD9D182C67172D006E1A01 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B5AD9D192C671761006E1A01 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		B5AD9D1A2C671772006E1A01 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B5AD9D1B2C671843006E1A01 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B5AD9D1C2C6AF2A6006E1A01 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Appearance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
