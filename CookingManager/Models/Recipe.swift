@@ -40,12 +40,18 @@ final class CookingStep {
     }
 }
 
-struct IngredientInfo {
+@Model
+final class IngredientInfo {
     var ingredient: Ingredient
     var number: Int
+    
+    init(ingredient: Ingredient, number: Int) {
+        self.ingredient = ingredient
+        self.number = number
+    }
 }
 
-enum RecipeCategory: String, CaseIterable, Identifiable {
+enum RecipeCategory: String, CaseIterable, Identifiable, Codable {
     case mainCourse = "主菜"
     case sideDish = "配菜"
     case dessert = "甜點"
