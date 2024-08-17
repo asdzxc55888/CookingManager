@@ -12,21 +12,37 @@ import SwiftData
 final class Recipe {
     var id: UUID
     var name: String
+    var cookingTime: TimeInterval
     var ingredients: [IngredientInfo]
     var cookingStep: [CookingStep]
     var tags: [Tag]
     var category: RecipeCategory
     @Attribute(.externalStorage) var previewImage: Data?
     
-    init(id: UUID, name: String, previewImage: Data? = nil, ingredients: [IngredientInfo], cookingStep: [CookingStep], tags: [Tag], category: RecipeCategory) {
+    init(id: UUID, name: String, cookingTime: TimeInterval, previewImage: Data? = nil, ingredients: [IngredientInfo], cookingStep: [CookingStep], tags: [Tag], category: RecipeCategory) {
         self.id = id
         self.name = name
-        self.previewImage = previewImage
+        self.cookingTime = cookingTime
         self.ingredients = ingredients
         self.cookingStep = cookingStep
         self.tags = tags
         self.category = category
+        self.previewImage = previewImage
     }
+    
+    static let mock: Recipe = .init(
+        id: UUID(uuidString: "ebd50a26-89a3-48df-a12f-6e1f3054a85d")!,
+        name: "空心菜炒豬肉",
+        cookingTime: 60 * 20,
+        previewImage: loadImageData(name: "SampleRecipeImage_1", withExtension: "png"),
+        ingredients: [],
+        cookingStep: [],
+        tags: [
+            .init(name: "簡單"),
+            .init(name: "台式")
+        ],
+        category: .mainCourse
+    )
 }
 
 @Model

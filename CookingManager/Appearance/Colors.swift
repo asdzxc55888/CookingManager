@@ -31,6 +31,10 @@ enum RecipeCardColor: CaseIterable {
     }
 }
 
+struct CustomColor {
+    static let darkGray = Color(hex: "444444")
+}
+
 #Preview {
     VStack {
         let lazyVGridColumns = Array.init(repeating: GridItem(.fixed(80)), count: 5)

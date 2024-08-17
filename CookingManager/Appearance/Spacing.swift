@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum Spacing: Int {
-    case xxs = 2
-    case xs = 4
-    case s = 8
-    case m = 12
-    case l = 16
-    case xl = 20
-    case xxl = 32
+struct Spacing {
+    static let xxs: CGFloat = 2
+    static let xs: CGFloat = 4
+    static let s: CGFloat = 8
+    static let m: CGFloat = 12
+    static let l: CGFloat = 16
+    static let xl: CGFloat = 20
+    static let xxl: CGFloat = 32
 }
