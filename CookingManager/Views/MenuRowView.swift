@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MenuRowView: View {
+    @Environment(MainRouter.self) var mainRouter
     @State private var selectedButton: MenuButton = .cookingSchedule
     
     var body: some View {
@@ -54,6 +55,7 @@ extension MenuRowView {
     //TODO: navigate to right screen
     private func navigate(menuButton: MenuButton) {
         selectedButton = menuButton
+        mainRouter.replace(menuButton.mainRoute)
     }
 }
 
@@ -82,9 +84,19 @@ extension MenuRowView {
             case .doShopping: return "採買"
             }
         }
+        
+        var mainRoute: MainRoute {
+            switch self {
+            case .recipe: return .recipeView
+            case .cookingSchedule: return .cookingSchedule
+            case .ingredient: return .ingredients
+            case .doShopping: return .shopping
+            }
+        }
     }
 }
 
 #Preview {
     MenuRowView()
+        .environment(MainRouter(initialRoute: .cookingSchedule))
 }

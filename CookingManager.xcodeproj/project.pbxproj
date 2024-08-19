@@ -22,6 +22,8 @@
 		B59355462C70B1E300A0B221 /* SampleRecipeImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B59355452C70B1E300A0B221 /* SampleRecipeImage.xcassets */; };
 		B593554A2C70BB1300A0B221 /* View+RoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59355492C70BB1300A0B221 /* View+RoundCorner.swift */; };
 		B593554C2C730F5800A0B221 /* MenuRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593554B2C730F5800A0B221 /* MenuRowView.swift */; };
+		B593554E2C731E3100A0B221 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593554D2C731E3100A0B221 /* MainRouter.swift */; };
+		B59355502C731FC500A0B221 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593554F2C731FC500A0B221 /* MainView.swift */; };
 		B5AD9CED2C67082E006E1A01 /* CookingManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD9CEC2C67082E006E1A01 /* CookingManagerApp.swift */; };
 		B5AD9CEF2C67082E006E1A01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD9CEE2C67082E006E1A01 /* ContentView.swift */; };
 		B5AD9CF12C67082E006E1A01 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD9CF02C67082E006E1A01 /* Item.swift */; };
@@ -65,6 +67,8 @@
 		B59355452C70B1E300A0B221 /* SampleRecipeImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SampleRecipeImage.xcassets; sourceTree = "<group>"; };
 		B59355492C70BB1300A0B221 /* View+RoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+RoundCorner.swift"; sourceTree = "<group>"; };
 		B593554B2C730F5800A0B221 /* MenuRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRowView.swift; sourceTree = "<group>"; };
+		B593554D2C731E3100A0B221 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		B593554F2C731FC500A0B221 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B5AD9CE92C67082E006E1A01 /* CookingManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AD9CEC2C67082E006E1A01 /* CookingManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingManagerApp.swift; sourceTree = "<group>"; };
 		B5AD9CEE2C67082E006E1A01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				B5AD9CEE2C67082E006E1A01 /* ContentView.swift */,
 				B5AD9CEC2C67082E006E1A01 /* CookingManagerApp.swift */,
 				B5AD9CF02C67082E006E1A01 /* Item.swift */,
+				B593554F2C731FC500A0B221 /* MainView.swift */,
 				B5AD9CF22C67082F006E1A01 /* Assets.xcassets */,
 				B5AD9D1C2C6AF2A6006E1A01 /* Appearance */,
 				B593553A2C6DB9A600A0B221 /* Extensions */,
@@ -215,8 +220,8 @@
 		B5AD9D1A2C671772006E1A01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B59355362C6DB85700A0B221 /* RecipeCardView.swift */,
 				B593554B2C730F5800A0B221 /* MenuRowView.swift */,
+				B59355362C6DB85700A0B221 /* RecipeCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				B593553F2C6DFB1000A0B221 /* SwiftDataService.swift */,
+				B593554D2C731E3100A0B221 /* MainRouter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -372,8 +378,10 @@
 			files = (
 				B59355352C6DB2C500A0B221 /* CustomFont.swift in Sources */,
 				B59355392C6DB8CD00A0B221 /* Colors.swift in Sources */,
+				B593554E2C731E3100A0B221 /* MainRouter.swift in Sources */,
 				B59355432C70B11100A0B221 /* ImageLoader.swift in Sources */,
 				B593552F2C6B4AAF00A0B221 /* CookingSchedule.swift in Sources */,
+				B59355502C731FC500A0B221 /* MainView.swift in Sources */,
 				B59355402C6DFB1000A0B221 /* SwiftDataService.swift in Sources */,
 				B593552D2C6B455E00A0B221 /* Tag.swift in Sources */,
 				B59355332C6DB1F000A0B221 /* Spacing.swift in Sources */,
