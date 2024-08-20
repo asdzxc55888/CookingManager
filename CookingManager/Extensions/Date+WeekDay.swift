@@ -17,7 +17,6 @@ extension Date {
     func getWeekDay() -> [WeekDay] {
         let date = self
         let calendar = Calendar.current
-        let startDate = calendar.startOfDay(for: date)
         
         //var weekDay: [WeekDay] = []
         guard let weekRange = calendar.range(of: .day, in: .weekOfMonth, for: date) else {
@@ -36,13 +35,17 @@ extension Date {
         }
     }
     
-    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
-        return calendar.component(component, from: self)
-    }
-    
-    func toString(dateFormat: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat
-        return dateFormatter.string(from: self)
+    static func getWeekDateRange(forWeek weekOfYear: Int, inYear year: Int) -> [WeekDay] {
+        let calendar = Calendar.current
+        
+        var components = DateComponents()
+        components.weekOfYear = weekOfYear
+        components.yearForWeekOfYear = year
+        
+        if let startOfWeek = calendar.date(from: components) {
+            return startOfWeek.getWeekDay()
+        }
+        
+        return []
     }
 }
