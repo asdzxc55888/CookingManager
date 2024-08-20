@@ -25,6 +25,9 @@
 		B593554E2C731E3100A0B221 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593554D2C731E3100A0B221 /* MainRouter.swift */; };
 		B59355502C731FC500A0B221 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593554F2C731FC500A0B221 /* MainView.swift */; };
 		B59355522C748BB400A0B221 /* RecipeCategoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59355512C748BB400A0B221 /* RecipeCategoryRowView.swift */; };
+		B59355552C749E6800A0B221 /* DatePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59355542C749E6800A0B221 /* DatePickerRow.swift */; };
+		B59355572C74A1B200A0B221 /* Date+WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59355562C74A1B200A0B221 /* Date+WeekDay.swift */; };
+		B593555A2C74A48700A0B221 /* DateWeekDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59355592C74A48700A0B221 /* DateWeekDayTests.swift */; };
 		B5AD9CED2C67082E006E1A01 /* CookingManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD9CEC2C67082E006E1A01 /* CookingManagerApp.swift */; };
 		B5AD9CEF2C67082E006E1A01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD9CEE2C67082E006E1A01 /* ContentView.swift */; };
 		B5AD9CF12C67082E006E1A01 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD9CF02C67082E006E1A01 /* Item.swift */; };
@@ -71,6 +74,9 @@
 		B593554D2C731E3100A0B221 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		B593554F2C731FC500A0B221 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B59355512C748BB400A0B221 /* RecipeCategoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryRowView.swift; sourceTree = "<group>"; };
+		B59355542C749E6800A0B221 /* DatePickerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerRow.swift; sourceTree = "<group>"; };
+		B59355562C74A1B200A0B221 /* Date+WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+WeekDay.swift"; sourceTree = "<group>"; };
+		B59355592C74A48700A0B221 /* DateWeekDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekDayTests.swift; sourceTree = "<group>"; };
 		B5AD9CE92C67082E006E1A01 /* CookingManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AD9CEC2C67082E006E1A01 /* CookingManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingManagerApp.swift; sourceTree = "<group>"; };
 		B5AD9CEE2C67082E006E1A01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 				B593553D2C6DC92A00A0B221 /* Array+Util.swift */,
 				B593553B2C6DB9D800A0B221 /* Color+Hex.swift */,
 				B59355492C70BB1300A0B221 /* View+RoundCorner.swift */,
+				B59355562C74A1B200A0B221 /* Date+WeekDay.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -133,6 +140,14 @@
 				B59355452C70B1E300A0B221 /* SampleRecipeImage.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B59355582C74A47500A0B221 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B59355592C74A48700A0B221 /* DateWeekDayTests.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B5AD9CE02C67082E006E1A01 = {
@@ -187,6 +202,7 @@
 		B5AD9CFE2C67082F006E1A01 /* CookingManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				B59355582C74A47500A0B221 /* Extensions */,
 				B5AD9CFF2C67082F006E1A01 /* CookingManagerTests.swift */,
 			);
 			path = CookingManagerTests;
@@ -222,6 +238,7 @@
 		B5AD9D1A2C671772006E1A01 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B59355542C749E6800A0B221 /* DatePickerRow.swift */,
 				B593554B2C730F5800A0B221 /* MenuRowView.swift */,
 				B59355362C6DB85700A0B221 /* RecipeCardView.swift */,
 				B59355512C748BB400A0B221 /* RecipeCategoryRowView.swift */,
@@ -336,6 +353,8 @@
 				Base,
 			);
 			mainGroup = B5AD9CE02C67082E006E1A01;
+			packageReferences = (
+			);
 			productRefGroup = B5AD9CEA2C67082E006E1A01 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -379,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B59355552C749E6800A0B221 /* DatePickerRow.swift in Sources */,
 				B59355352C6DB2C500A0B221 /* CustomFont.swift in Sources */,
 				B59355392C6DB8CD00A0B221 /* Colors.swift in Sources */,
 				B593554E2C731E3100A0B221 /* MainRouter.swift in Sources */,
@@ -393,6 +413,7 @@
 				B593553E2C6DC92A00A0B221 /* Array+Util.swift in Sources */,
 				B59355292C6B3EB600A0B221 /* Recipe.swift in Sources */,
 				B593554C2C730F5800A0B221 /* MenuRowView.swift in Sources */,
+				B59355572C74A1B200A0B221 /* Date+WeekDay.swift in Sources */,
 				B5AD9CEF2C67082E006E1A01 /* ContentView.swift in Sources */,
 				B59355522C748BB400A0B221 /* RecipeCategoryRowView.swift in Sources */,
 				B59355372C6DB85700A0B221 /* RecipeCardView.swift in Sources */,
@@ -406,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B593555A2C74A48700A0B221 /* DateWeekDayTests.swift in Sources */,
 				B5AD9D002C67082F006E1A01 /* CookingManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
