@@ -64,7 +64,7 @@ struct RecipeCardView: View {
                 }
             
             RoundedRectangle(cornerRadius: 16)
-                .fill(color)
+                .fill(Color.white.opacity(0.7))
                 .shadow(radius: 1, x: -2, y: 4)
                 .overlay {
                     LinearGradient(
@@ -77,7 +77,7 @@ struct RecipeCardView: View {
                     )
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
-                .opacity(0.7)
+                .opacity(0.6)
                 .background{
                     RecipeImage
                 }

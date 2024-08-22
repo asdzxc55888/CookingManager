@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuRowView: View {
     @Environment(MainRouter.self) var mainRouter
     @State private var selectedButton: MenuButton = .cookingSchedule
+    @Namespace var selectedAnimation
     
     var body: some View {
         HStack {
@@ -40,6 +41,7 @@ struct MenuRowView: View {
                         Rectangle()
                             .frame(width: 80, height: 1)
                             .foregroundStyle(Color.white.opacity(0.75))
+                            .matchedGeometryEffect(id: "Bar", in: selectedAnimation)
                     }
                 }
                 .frame(width: 80, height: 48)

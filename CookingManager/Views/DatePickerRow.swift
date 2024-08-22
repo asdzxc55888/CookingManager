@@ -34,8 +34,6 @@ struct DatePickerRow: View {
     }
     
     var body: some View {
-        Text(String(currentYear))
-        Text(String(currentWeekOfYear))
         TabView(selection: $currentWeekOfYear) {
             ForEach(0...(totalWeeksInYear + 1), id: \.self) { week in
                 WeekView(
@@ -97,12 +95,12 @@ private struct WeekView: View {
             Text(date.toString(dateFormat: "EEE"))
             Text(date.toString(dateFormat: "dd"))
         }
-        .font(.system(size: 14, weight: selected ? .bold : .regular))
+        .font(.system(size: 14, weight: selected ? .bold : .light))
         .foregroundStyle(textColor)
         .background {
             if selected {
                 Circle()
-                    .fill(Color.blue)
+                    .fill(CustomColor.darkSkyBlue)
                     .frame(width: 44, height: 44)
                     .transition(.scale)
                     .matchedGeometryEffect(id: "Circle", in: circleAnimation)

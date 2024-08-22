@@ -33,6 +33,7 @@ enum RecipeCardColor: CaseIterable {
 
 struct CustomColor {
     static let darkGray = Color(hex: "444444")
+    static let lightGray = Color(hex: "CCCCCC")
     static let skyBule = Color(hex: "8ECAE6")
     static let darkSkyBlue = Color(hex: "219EBC")
 }
