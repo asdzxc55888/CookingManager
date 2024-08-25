@@ -18,7 +18,6 @@ extension Date {
         let date = self
         let calendar = Calendar.current
         
-        //var weekDay: [WeekDay] = []
         guard let weekRange = calendar.range(of: .day, in: .weekOfMonth, for: date) else {
             return []
         }
