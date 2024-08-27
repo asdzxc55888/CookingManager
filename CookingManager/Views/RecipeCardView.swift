@@ -150,22 +150,9 @@ struct RecipeCardView: View {
         HStack {
             let tags = recipe?.tags ?? []
             ForEach(tags, id: \.name) { tag in
-                makeTag(tag: tag)
+                TagView(tag: tag)
             }
         }
-    }
-    
-    
-    @ViewBuilder
-    private func makeTag(tag: Tag) -> some View {
-        Text(tag.name)
-            .font(.system(size: 12))
-            .foregroundStyle(Color.white)
-            .padding(.vertical, Spacing.xs)
-            .padding(.horizontal, Spacing.m)
-            .background {
-                RoundedRectangle(cornerRadius: 12)
-            }
     }
 }
 
