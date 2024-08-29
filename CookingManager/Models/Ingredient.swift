@@ -16,7 +16,7 @@ final class Ingredient {
     // MARK: If have simple enough option, then didn't need to care about the number
     var isSimpleEnough: Bool?
     
-    init(id: UUID, name: String, quantifier: String) {
+    init(id: UUID = UUID(), name: String, quantifier: String) {
         self.id = id
         self.name = name
         self.quantifier = quantifier

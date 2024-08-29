@@ -68,6 +68,12 @@ final class IngredientInfo {
         self.ingredient = ingredient
         self.number = number
     }
+    
+    var isValid: Bool {
+        !ingredient.name.isEmpty &&
+        !ingredient.quantifier.isEmpty &&
+        number != 0
+    }
 }
 
 enum RecipeCategory: String, CaseIterable, Identifiable, Codable {
