@@ -45,7 +45,7 @@ struct AutoCompleteTextField: View {
     
     @ViewBuilder
     private var SuggestionsList: some View {
-        if showSuggestion && !text.isEmpty {
+        if showSuggestion && !text.isEmpty && !suggestions.isEmpty {
             ScrollView(showsIndicators: false) {
                 LazyVStack(alignment: .leading, spacing: Spacing.xxs) {
                     let filtedSuggestions = suggestions.filter({ $0.localizedCaseInsensitiveContains(text)

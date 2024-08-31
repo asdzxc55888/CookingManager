@@ -13,6 +13,7 @@ enum MainViewTab: String, Hashable {
 }
 
 struct MainView: View {
+    let dataProvider = DataProvider.shared
     @State private var mainRouter: MainRouter = .init(initialRoute: .cookingSchedule)
     
     var body: some View {
@@ -27,6 +28,7 @@ struct MainView: View {
             MenuRowView()
         }
         .environment(mainRouter)
+        .environment(\.dataProvider, dataProvider)
     }
 }
 

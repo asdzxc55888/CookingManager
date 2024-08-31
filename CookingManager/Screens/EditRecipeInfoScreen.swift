@@ -34,22 +34,21 @@ final class EditRecipeInfoScreenModel {
         !(name.isEmpty || category == nil || cookingTime == 0)
     }
     
-    func addTags(tagText: String, tags: [Tag], modelContext: ModelContext) {
+    func addTags(tagText: String, tags: [Tag], dataHandler: RecipeDataHandler) async throws {
         guard !tagText.isEmpty else { return }
         guard !self.tags.contains(where: { $0.name == tagText }) else { return }
         
         if let tag = tags.first(where: { $0.name == tagText }) {
             self.tags.append(tag)
         } else {
-            let newTag = Tag(name: tagText)
-            modelContext.insert(newTag)
+            let newTag = try await dataHandler.createTag(tagName: tagText)
             self.tags.append(newTag)
         }
     }
 }
 
 struct EditRecipeInfoScreen: View {
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dataProvider) private var dataProvider
     
     @Binding private var viewModel: EditRecipeInfoScreenModel
     @State private var selectedCategort: RecipeCategory? = nil
@@ -176,13 +175,16 @@ struct EditRecipeInfoScreen: View {
 //MARK: handlers
 extension EditRecipeInfoScreen {
     private func addTags() {
-        viewModel.addTags(
-            tagText: tagText,
-            tags: tags,
-            modelContext: modelContext
-        )
-        showTagsSuggestion = false
-        tagText = ""
+        Task.detached {
+            let dataHandler = await dataProvider.dataHandlerCreator(for: RecipeDataHandler.self)()
+            try await viewModel.addTags(
+                tagText: tagText,
+                tags: tags,
+                dataHandler: dataHandler
+            )
+            showTagsSuggestion = false
+            tagText = ""
+        }
     }
 }
 
@@ -200,7 +202,7 @@ private struct PreviewWrapper: View {
     var body: some View {
         EditRecipeInfoScreen(viewModel: $viewModel)
             .padding()
-            .modelContainer(ModelContainerService.previewModelContainer)
+            .modelContainer(DataProvider.shared.previewModelContainer)
     }
 }
 
