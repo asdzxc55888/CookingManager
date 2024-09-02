@@ -10,6 +10,8 @@ import SwiftUI
 struct CreateRecipeScreen: View {
     @State private var currentSegment: CreateRecipeSegement = .recipeInfo
     @State private var editRecipeInfoModel: EditRecipeInfoScreenModel = .init()
+    @State private var editRecipeStepModel: EditRecipeStepScreenModel = .init()
+    @State private var ingredients: [EditIngredientsScreen.IngredientProps] = []
     @State private var viewSize: CGSize = .init(width: 299, height: 300)
     
     var body: some View {
@@ -30,15 +32,12 @@ struct CreateRecipeScreen: View {
             
             TabView(selection: $currentSegment){
                 EditRecipeInfoScreen(viewModel: $editRecipeInfoModel)
-                    .readSize($viewSize)
                     .frame(maxHeight: .infinity, alignment: .top)
                     .tag(CreateRecipeSegement.recipeInfo)
-                Text("所需食材")
-                    .readSize($viewSize)
+                EditIngredientsScreen(ingredients: $ingredients)
                     .frame(maxHeight: .infinity, alignment: .top)
                     .tag(CreateRecipeSegement.steps)
-                Text("烹飪步驟")
-                    .readSize($viewSize)
+                EditRecipeStepScreen(viewModel: $editRecipeStepModel)
                     .frame(maxHeight: .infinity, alignment: .top)
                     .tag(CreateRecipeSegement.ingredients)
             }

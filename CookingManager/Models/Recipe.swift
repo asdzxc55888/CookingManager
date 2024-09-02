@@ -50,11 +50,11 @@ final class Recipe {
 
 @Model
 final class CookingStep {
-    var illustration: String
+    var text: String
     @Attribute(.externalStorage) var image: Data?
     
-    init(illustration: String, image: Data? = nil) {
-        self.illustration = illustration
+    init(text: String, image: Data? = nil) {
+        self.text = text
         self.image = image
     }
 }
