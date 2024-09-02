@@ -43,6 +43,8 @@
 		B59355772C80C0AF00A0B221 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59355762C80C0AF00A0B221 /* DataProvider.swift */; };
 		B59355792C8415ED00A0B221 /* EditRecipeStepScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59355782C8415ED00A0B221 /* EditRecipeStepScreen.swift */; };
 		B593557B2C8486DF00A0B221 /* EditCookingStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593557A2C8486DF00A0B221 /* EditCookingStepCell.swift */; };
+		B593557E2C85970D00A0B221 /* EditRecipeStepScreenModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593557D2C85970D00A0B221 /* EditRecipeStepScreenModelTests.swift */; };
+		B59355802C85BB2100A0B221 /* EditRecipeInfoScreenModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593557F2C85BB2100A0B221 /* EditRecipeInfoScreenModelTests.swift */; };
 		B5AD9CED2C67082E006E1A01 /* CookingManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD9CEC2C67082E006E1A01 /* CookingManagerApp.swift */; };
 		B5AD9CEF2C67082E006E1A01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD9CEE2C67082E006E1A01 /* ContentView.swift */; };
 		B5AD9CF12C67082E006E1A01 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AD9CF02C67082E006E1A01 /* Item.swift */; };
@@ -107,6 +109,8 @@
 		B59355762C80C0AF00A0B221 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		B59355782C8415ED00A0B221 /* EditRecipeStepScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecipeStepScreen.swift; sourceTree = "<group>"; };
 		B593557A2C8486DF00A0B221 /* EditCookingStepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCookingStepCell.swift; sourceTree = "<group>"; };
+		B593557D2C85970D00A0B221 /* EditRecipeStepScreenModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecipeStepScreenModelTests.swift; sourceTree = "<group>"; };
+		B593557F2C85BB2100A0B221 /* EditRecipeInfoScreenModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecipeInfoScreenModelTests.swift; sourceTree = "<group>"; };
 		B5AD9CE92C67082E006E1A01 /* CookingManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AD9CEC2C67082E006E1A01 /* CookingManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingManagerApp.swift; sourceTree = "<group>"; };
 		B5AD9CEE2C67082E006E1A01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -193,6 +197,15 @@
 			path = DataHandlers;
 			sourceTree = "<group>";
 		};
+		B593557C2C8596F300A0B221 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B593557D2C85970D00A0B221 /* EditRecipeStepScreenModelTests.swift */,
+				B593557F2C85BB2100A0B221 /* EditRecipeInfoScreenModelTests.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		B5AD9CE02C67082E006E1A01 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +259,7 @@
 		B5AD9CFE2C67082F006E1A01 /* CookingManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				B593557C2C8596F300A0B221 /* ViewModels */,
 				B59355582C74A47500A0B221 /* Extensions */,
 				B5AD9CFF2C67082F006E1A01 /* CookingManagerTests.swift */,
 			);
@@ -494,7 +508,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B59355802C85BB2100A0B221 /* EditRecipeInfoScreenModelTests.swift in Sources */,
 				B59355682C7AFA1B00A0B221 /* TimeIntervalExtensionTests.swift in Sources */,
+				B593557E2C85970D00A0B221 /* EditRecipeStepScreenModelTests.swift in Sources */,
 				B593555A2C74A48700A0B221 /* DateWeekDayTests.swift in Sources */,
 				B5AD9D002C67082F006E1A01 /* CookingManagerTests.swift in Sources */,
 			);

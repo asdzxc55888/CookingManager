@@ -70,10 +70,6 @@ struct EditRecipeStepScreen: View {
     }
 }
 
-extension EditRecipeStepScreen {
-    //private func add
-}
-
 private struct PreviewWrapper: View {
     @State private var viewModel: EditRecipeStepScreenModel = .init()
     
