@@ -31,7 +31,7 @@ final class MainRouter: RouterProtocol {
     func view(for route: MainRoute) -> some View {
         switch route {
         case .recipeView:
-            Text("Recipe View")
+            RecipeListScreen()
         case .cookingSchedule:
             Text("Cooking Schedule")
         case .ingredients:

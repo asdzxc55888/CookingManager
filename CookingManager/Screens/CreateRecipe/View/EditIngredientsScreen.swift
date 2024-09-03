@@ -36,11 +36,6 @@ struct EditIngredientsScreen: View {
             LazyVStack {
                 ForEach(ingredients.indices, id: \.self) { index in
                     HStack {
-                        // AutoCompleteTextField(
-                        //     text: $ingredients[index].ingredientName,
-                        //     showSuggestion: .constant(false),
-                        //     suggestions: []
-                        // )
                         TextField(
                             "食材名稱",
                             text: $ingredients[index].ingredientName

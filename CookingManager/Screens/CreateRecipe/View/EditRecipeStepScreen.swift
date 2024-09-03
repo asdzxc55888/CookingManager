@@ -7,31 +7,6 @@
 
 import SwiftUI
 
-@Observable
-final class EditRecipeStepScreenModel {
-    struct CookingStep {
-        var text: String
-        var image: Data?
-    }
-    
-    var cookingSteps: [EditCookingStepCell.CookingStep] = [
-        .init(text: "")
-    ]
-    
-    var showDeleteButton: Bool {
-        cookingSteps.count > 1
-    }
-    
-    func addNewCookingStep() {
-        cookingSteps.append(.init(text: ""))
-    }
-    
-    func deleteCookingStep(at index: Int) {
-        guard index < cookingSteps.count else { return }
-        cookingSteps.remove(at: index)
-    }
-}
-
 struct EditRecipeStepScreen: View {
     @Environment(\.dataProvider) var dataProvider
     @Binding var viewModel: EditRecipeStepScreenModel
