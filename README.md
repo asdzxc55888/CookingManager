@@ -1,0 +1,3 @@
+Cooking Manager is an APP that could help people create some recipes and also arrange recipes in their daily schedule.
+
+In Development...
