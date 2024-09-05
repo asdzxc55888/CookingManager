@@ -37,8 +37,7 @@ struct EditRecipeInfoScreen: View {
     private var EditNameField: some View {
         makeTextField(
             name: "食譜名稱:",
-            focusField: .name,
-            text: $viewModel.name
+            fieldModel: $viewModel.name
         )
     }
     
@@ -46,8 +45,7 @@ struct EditRecipeInfoScreen: View {
     private var DescriptionField: some View {
         makeTextField(
             name: "食譜說明:",
-            focusField: .description,
-            text: $viewModel.description
+            fieldModel: $viewModel.description
         )
     }
     
@@ -112,23 +110,13 @@ struct EditRecipeInfoScreen: View {
     @ViewBuilder
     private func makeTextField(
         name: String,
-        focusField: FocusedField,
-        text: Binding<String>
+        fieldModel: Binding<CustomTextFieldModel>
     ) -> some View {
         VStack(alignment: .leading, spacing: Spacing.xs) {
             Text(name)
                 .font(.system(size: 14))
             
-            TextField("輸入\(name)...", text: text)
-                .focused($focus, equals: focusField)
-                .font(.system(size: 14))
-                .padding(Spacing.s)
-                .overlay {
-                    let isFocus = focus == focusField
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(isFocus ? .blue : .gray, lineWidth: 1)
-                }
-                .animation(.bouncy, value: focus)
+            CustomTextField(fieldModel: fieldModel)
         }
     }
 }
@@ -136,7 +124,7 @@ struct EditRecipeInfoScreen: View {
 //MARK: handlers
 extension EditRecipeInfoScreen {
     private func addTags() {
-        Task.detached {
+        Task {
             let dataHandler = await dataProvider.dataHandlerCreator(for: RecipeDataHandler.self)()
             try await viewModel.addTags(
                 tagText: tagText,
@@ -151,7 +139,7 @@ extension EditRecipeInfoScreen {
 
 //MARK: enumration
 extension EditRecipeInfoScreen {
-    enum FocusedField: Hashable{
+    enum FocusedField: Hashable {
         case name
         case description
     }

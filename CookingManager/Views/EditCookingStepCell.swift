@@ -29,8 +29,8 @@ struct EditCookingStepCell: View {
                 DeleteStepButton
             }
         
-            TextField("輸入烹飪步驟...", text: $cookingStep.text, axis: .vertical)
-                .textFieldStyle(.roundedBorder)
+            CustomTextField(fieldModel: $cookingStep.textField)
+                .background(Color.white)
             
             if let imageData = cookingStep.image, let uiImage = UIImage(data: imageData) {
                 HStack {
@@ -97,13 +97,15 @@ struct EditCookingStepCell: View {
 
 extension EditCookingStepCell {
     struct CookingStep {
-        var text: String
+        var textField: CustomTextFieldModel
         var image: Data?
     }
 }
 
 private struct PreviewWrapper: View {
-    @State private var cookingStep: EditCookingStepCell.CookingStep = .init(text: "")
+    @State private var cookingStep: EditCookingStepCell.CookingStep = .init(
+        textField: .init(text: "")
+    )
     
     var body: some View {
         EditCookingStepCell(index: 0, cookingStep: $cookingStep, onDelete: {})

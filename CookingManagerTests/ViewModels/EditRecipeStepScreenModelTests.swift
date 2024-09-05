@@ -23,13 +23,13 @@ final class EditRecipeStepScreenModelTests: XCTestCase {
 
     func testInitialCookingSteps() {
         XCTAssertEqual(viewModel.cookingSteps.count, 1)
-        XCTAssertEqual(viewModel.cookingSteps.first?.text, "")
+        XCTAssertEqual(viewModel.cookingSteps.first?.textField.text, "")
     }
 
     func testAddNewCookingStep() {
         viewModel.addNewCookingStep()
         XCTAssertEqual(viewModel.cookingSteps.count, 2)
-        XCTAssertEqual(viewModel.cookingSteps.last?.text, "")
+        XCTAssertEqual(viewModel.cookingSteps.last?.textField.text, "")
     }
 
     func testDeleteCookingStep() {

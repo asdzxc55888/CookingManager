@@ -9,8 +9,8 @@ import Foundation
 
 @Observable
 final class EditRecipeInfoScreenModel {
-    var name: String
-    var description: String
+    var name: CustomTextFieldModel
+    var description: CustomTextFieldModel
     var cookingTime: TimeInterval
     var category: RecipeCategory?
     var tags: [Tag] = []
@@ -27,15 +27,26 @@ final class EditRecipeInfoScreenModel {
         category: RecipeCategory? = nil,
         tags: [Tag] = []
     ) {
-        self.name = name
-        self.description = description
+        self.name = CustomTextFieldModel(
+            text: name,
+            placeholder: "輸入食譜名稱",
+            validation: { text in
+                if text.isEmpty {
+                    return "請輸入食譜名稱"
+                }
+                return nil
+            }
+        )
+        self.description = CustomTextFieldModel(
+            text: description
+        )
         self.cookingTime = cookingTime
         self.category = category
         self.tags = tags
     }
 
     var isDone: Bool {
-        !(name.isEmpty || category == nil || cookingTime == 0)
+        !(!name.validate() || category == nil || cookingTime == 0)
     }
     
     func addTags(tagText: String, tags: [Tag], dataHandler: RecipeDataHandler) async throws {

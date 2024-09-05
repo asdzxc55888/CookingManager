@@ -35,7 +35,7 @@ final class EditRecipeInfoScreenModelTests: XCTestCase {
     }
 
     func testIsDoneWithNameCategoryAndTime() {
-        viewModel.name = "Test Recipe"
+        viewModel.name = .init(text: "Test Recipe")
         viewModel.category = .mainCourse
         viewModel.cookingTime = 3600
 

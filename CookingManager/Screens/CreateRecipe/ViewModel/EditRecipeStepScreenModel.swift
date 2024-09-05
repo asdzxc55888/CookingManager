@@ -9,13 +9,8 @@ import Foundation
 
 @Observable
 final class EditRecipeStepScreenModel {
-    struct CookingStep {
-        var text: String
-        var image: Data?
-    }
-    
     var cookingSteps: [EditCookingStepCell.CookingStep] = [
-        .init(text: "")
+        .init(textField: CustomTextFieldModel(text: ""))
     ]
     
     var showDeleteButton: Bool {
@@ -23,7 +18,9 @@ final class EditRecipeStepScreenModel {
     }
     
     func addNewCookingStep() {
-        cookingSteps.append(.init(text: ""))
+        cookingSteps.append(
+            .init(textField: .init(text: ""))
+        )
     }
     
     func deleteCookingStep(at index: Int) {
