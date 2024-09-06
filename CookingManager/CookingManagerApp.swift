@@ -25,7 +25,7 @@ struct CookingManagerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            AppNavigator()
         }
     }
 }

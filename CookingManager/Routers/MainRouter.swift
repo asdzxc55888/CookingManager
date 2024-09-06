@@ -12,7 +12,7 @@ protocol RouterProtocol {
     associatedtype T: View
     associatedtype RouteType: Hashable
     var currentRoute: RouteType { get set }
-    @ViewBuilder func view(for route: RouteType) -> T
+    @ViewBuilder func view(for route: RouteType?) -> T
 }
 
 @Observable
@@ -28,7 +28,8 @@ final class MainRouter: RouterProtocol {
     }
     
     @ViewBuilder
-    func view(for route: MainRoute) -> some View {
+    func view(for route: MainRoute? = nil) -> some View {
+        let route = route ?? currentRoute
         switch route {
         case .recipeView:
             RecipeListScreen()

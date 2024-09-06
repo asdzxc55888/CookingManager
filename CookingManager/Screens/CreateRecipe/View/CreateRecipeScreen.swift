@@ -10,6 +10,8 @@ import SwiftUI
 struct CreateRecipeScreen: View {
     @Environment(\.dataProvider) var dataProvider
     
+    let onBack: () -> Void
+    
     @State private var currentSegment: CreateRecipeSegement = .recipeInfo
     @State private var editRecipeInfoModel: EditRecipeInfoScreenModel = .init()
     @State private var editRecipeStepModel: EditRecipeStepScreenModel = .init()
@@ -82,7 +84,7 @@ struct CreateRecipeScreen: View {
 //MARK: handler
 extension CreateRecipeScreen {
     private func onNavigateBack() {
-        print("navigate back")
+        onBack()
     }
     
     private func isValid() -> Bool {
@@ -142,6 +144,6 @@ extension CreateRecipeScreen {
 }
 
 #Preview {
-    CreateRecipeScreen()
+    CreateRecipeScreen(onBack: {})
         .modelContainer(ModelContainerService.previewModelContainer)
 }

@@ -9,6 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct RecipeListScreen: View {
+    @Environment(Navigator.self) var navigator
+    
     @State private var selectedCategory: RecipeCategory = .mainCourse
     @State private var selectedDate: Date = .now
     @Query private var recipes: [Recipe]
@@ -39,6 +41,10 @@ struct RecipeListScreen: View {
                 }
             }
         }
+        .overlay(alignment: .bottomTrailing, content: {
+            CreateRecipeButton
+                .padding()
+        })
     }
     
     @ViewBuilder
@@ -66,6 +72,16 @@ struct RecipeListScreen: View {
         }
         .frame(height: 160)
     }
+    
+    @ViewBuilder
+    private var CreateRecipeButton: some View {
+        Button(action: navigateCreateRecipe, label: {
+            Image(systemName: "plus.circle.fill")
+                .resizable()
+                .frame(width: 60, height: 60)
+                .foregroundStyle(CustomColor.darkSkyBlue)
+        })
+    }
 }
 
 //MARK: handler
@@ -79,9 +95,16 @@ extension RecipeListScreen {
         //TODO: need implement
         print("onPress: editRecipe, with id:\(recipeId)")
     }
+    
+    private func navigateCreateRecipe() {
+        navigator.push(route: .createRecipe(onBack: {
+            navigator.pop()
+        }))
+    }
 }
 
 #Preview {
     RecipeListScreen()
+        .environment(Navigator())
         .modelContainer(ModelContainerService.previewModelContainer)
 }
