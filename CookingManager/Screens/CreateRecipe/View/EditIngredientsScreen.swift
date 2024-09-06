@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct EditIngredientsScreen: View {
-    @Binding var ingredients: [IngredientProps]
+    @Binding var viewModel: EditIngredientsScreenModel
     @Query private var existIngredients: [Ingredient]
     
     var body: some View {
@@ -18,7 +18,7 @@ struct EditIngredientsScreen: View {
                 Text("新增食材")
                 Spacer()
                 Button(
-                    action: addIngredients,
+                    action: viewModel.addIngredients,
                     label: {
                         Image(systemName: "plus.circle")
                     }
@@ -34,18 +34,16 @@ struct EditIngredientsScreen: View {
     private var IngredientsList: some View {
         ScrollView {
             LazyVStack {
-                ForEach(ingredients.indices, id: \.self) { index in
-                    HStack {
-                        TextField(
-                            "食材名稱",
-                            text: $ingredients[index].ingredientName
-                        )
+                ForEach(viewModel.ingredients.indices, id: \.self) { index in
+                    HStack(alignment: .bottom) {
+                        CustomTextField(fieldModel: $viewModel.ingredients[index].ingredientName)
                         TextField(
                             "數量",
-                            value: $ingredients[index].number,
+                            value: $viewModel.ingredients[index].number,
                             formatter:  NumberFormatter()
                         )
-                        TextField("單位", text: $ingredients[index].ingredientQuantifier)
+                        .textFieldStyle(.roundedBorder)
+                        CustomTextField(fieldModel: $viewModel.ingredients[index].ingredientQuantifier)
                     }
                 }
             }
@@ -53,34 +51,12 @@ struct EditIngredientsScreen: View {
     }
 }
 
-//MARK: handler
-extension EditIngredientsScreen {
-    private func addIngredients() {
-        ingredients.append(
-            .init(
-                ingredientName: "",
-                ingredientQuantifier: "",
-                number: 0
-            )
-        )
-    }
-}
-
-extension EditIngredientsScreen {
-    struct IngredientProps: Equatable, Identifiable {
-        let id: UUID = .init()
-        var ingredientName: String
-        var ingredientQuantifier: String
-        var number: Int
-    }
-}
-
 private struct PreviewWrapper: View {
-    @State private var ingredients: [EditIngredientsScreen.IngredientProps] = []
+    @State private var viewModel: EditIngredientsScreenModel = .init()
     
     var body: some View {
         EditIngredientsScreen(
-            ingredients: $ingredients
+            viewModel: $viewModel
         )
         .modelContainer(ModelContainerService.previewModelContainer)
     }

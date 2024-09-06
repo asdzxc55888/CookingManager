@@ -30,7 +30,6 @@ struct EditCookingStepCell: View {
             }
         
             CustomTextField(fieldModel: $cookingStep.textField)
-                .background(Color.white)
             
             if let imageData = cookingStep.image, let uiImage = UIImage(data: imageData) {
                 HStack {

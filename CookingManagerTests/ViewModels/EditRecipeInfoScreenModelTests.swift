@@ -31,7 +31,7 @@ final class EditRecipeInfoScreenModelTests: XCTestCase {
     }
 
     func testIsDoneInitial() {
-        XCTAssertFalse(viewModel.isDone)
+        XCTAssertFalse(viewModel.validate())
     }
 
     func testIsDoneWithNameCategoryAndTime() {
@@ -39,7 +39,7 @@ final class EditRecipeInfoScreenModelTests: XCTestCase {
         viewModel.category = .mainCourse
         viewModel.cookingTime = 3600
 
-        XCTAssertTrue(viewModel.isDone)
+        XCTAssertTrue(viewModel.validate())
     }
 
     func testAddTagsWithExistingTag() async throws {

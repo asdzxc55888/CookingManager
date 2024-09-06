@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct CreateRecipeScreen: View {
+    @Environment(\.dataProvider) var dataProvider
+    
     @State private var currentSegment: CreateRecipeSegement = .recipeInfo
     @State private var editRecipeInfoModel: EditRecipeInfoScreenModel = .init()
     @State private var editRecipeStepModel: EditRecipeStepScreenModel = .init()
-    @State private var ingredients: [EditIngredientsScreen.IngredientProps] = []
+    @State private var editIngredientsModel: EditIngredientsScreenModel = .init()
     @State private var viewSize: CGSize = .init(width: 299, height: 300)
     
     var body: some View {
@@ -19,13 +21,9 @@ struct CreateRecipeScreen: View {
             Header
             
             Picker(selection: $currentSegment, label: Text("test")) {
-                HStack {
-                    Text("食譜資訊")
-                        .foregroundStyle(editRecipeInfoModel.isDone ? Color.green : Color.black)
-                }
-                .tag(CreateRecipeSegement.recipeInfo)
-                Text("所需食材").tag(CreateRecipeSegement.steps)
-                Text("烹飪步驟").tag(CreateRecipeSegement.ingredients)
+                Text("食譜資訊").tag(CreateRecipeSegement.recipeInfo)
+                Text("所需食材").tag(CreateRecipeSegement.ingredients)
+                Text("烹飪步驟").tag(CreateRecipeSegement.steps)
             }
             .pickerStyle(.segmented)
             .padding(.horizontal, Spacing.m)
@@ -34,12 +32,12 @@ struct CreateRecipeScreen: View {
                 EditRecipeInfoScreen(viewModel: $editRecipeInfoModel)
                     .frame(maxHeight: .infinity, alignment: .top)
                     .tag(CreateRecipeSegement.recipeInfo)
-                EditIngredientsScreen(ingredients: $ingredients)
-                    .frame(maxHeight: .infinity, alignment: .top)
-                    .tag(CreateRecipeSegement.steps)
-                EditRecipeStepScreen(viewModel: $editRecipeStepModel)
+                EditIngredientsScreen(viewModel: $editIngredientsModel)
                     .frame(maxHeight: .infinity, alignment: .top)
                     .tag(CreateRecipeSegement.ingredients)
+                EditRecipeStepScreen(viewModel: $editRecipeStepModel)
+                    .frame(maxHeight: .infinity, alignment: .top)
+                    .tag(CreateRecipeSegement.steps)
             }
             .tabViewStyle(.page)
             .padding(Spacing.l)
@@ -87,8 +85,51 @@ extension CreateRecipeScreen {
         print("navigate back")
     }
     
-    private func onCreate() {
+    private func isValid() -> Bool {
+        let isRecipeInfoValid = editRecipeInfoModel.validate()
+        let isCookingStepsValid = editRecipeStepModel.validate()
         
+        if !isRecipeInfoValid {
+            currentSegment = .recipeInfo
+        } else if !isCookingStepsValid {
+            currentSegment = .steps
+        }
+        
+        return isRecipeInfoValid && isCookingStepsValid
+    }
+    
+    private func onCreate() {
+        guard isValid() else { return }
+        guard let category = editRecipeInfoModel.category else { return }
+        
+        Task {
+            let dataHandlerCreator = dataProvider.dataHandlerCreator(for: RecipeDataHandler.self)
+            let dataHandler = await dataHandlerCreator()
+            _ = try await dataHandler.createRecipe(dto:
+                .init(
+                    name: editRecipeInfoModel.name.text,
+                    recipeDesc: editRecipeInfoModel.description.text,
+                    cookingTime: editRecipeInfoModel.cookingTime,
+                    ingredients: editIngredientsModel.ingredients.map { ingredient in
+                        IngredientInfo(
+                            ingredient: .init(
+                                name: ingredient.ingredientName.text,
+                                quantifier: ingredient.ingredientQuantifier.text
+                            ),
+                            number: ingredient.number
+                        )
+                    },
+                    cookingStep: editRecipeStepModel.cookingSteps.map { step in
+                        CookingStep(
+                            text: step.textField.text,
+                            image: step.image
+                        )
+                    },
+                    tags: editRecipeInfoModel.tags,
+                    category: category
+                )
+            )
+        }
     }
 }
 

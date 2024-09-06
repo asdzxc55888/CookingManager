@@ -12,6 +12,7 @@ struct EditRecipeInfoScreen: View {
     @Environment(\.dataProvider) private var dataProvider
     
     @Binding private var viewModel: EditRecipeInfoScreenModel
+    
     @State private var selectedCategort: RecipeCategory? = nil
     @State private var tagText: String = ""
     @State private var showTagsSuggestion: Bool = false
@@ -57,20 +58,17 @@ struct EditRecipeInfoScreen: View {
             
             Menu {
                 Picker(selection: $viewModel.category) {
-                    ForEach(RecipeCategory.allCases.reversed()) { category in
+                    ForEach(RecipeCategory.allCases) { category in
                         Text(category.rawValue)
                             .tag(category as RecipeCategory?)
                     }
-                    
-                    Text("請選擇食譜分類")
-                        .tag(nil as RecipeCategory?)
                 } label: {}
             } label: {
                 Text(viewModel.category?.rawValue ?? "請選擇食譜分類")
                     .font(.system(size: 14))
-                    .foregroundStyle(CustomColor.darkSkyBlue)
+                    .foregroundStyle(viewModel.isCategoryError ? .red : CustomColor.darkSkyBlue)
             }
-            
+            .onChange(of: viewModel.category, viewModel.onCategoryChanged)
         }
     }
     

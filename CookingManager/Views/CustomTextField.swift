@@ -18,8 +18,13 @@ final class CustomTextFieldModel {
     var errorMessage: String?
     private let validation: ((_ text: String) -> String?)?
     
-    var showError: Bool = false
+    private var isValidated: Bool = false
+    private var hasError: Bool = false
     private var debounceTimer: DispatchWorkItem?
+    
+    var isShowError: Bool {
+        isValidated && hasError
+    }
     
     init(text: String, placeholder: String = "", validation: ((_ text: String) -> String?)? = nil) {
         self.text = text
@@ -28,13 +33,18 @@ final class CustomTextFieldModel {
     }
     
     func validate() -> Bool {
+        isValidated = true
+        return _validate()
+    }
+    
+    private func _validate() -> Bool {
         guard let validation else { return true }
         
         let newErrorMessage = validation(self.text)
         let isValid = newErrorMessage == nil
         self.errorMessage  = newErrorMessage
         
-        showError = !isValid
+        hasError = !isValid
         return isValid
     }
     
@@ -42,7 +52,7 @@ final class CustomTextFieldModel {
         debounceTimer?.cancel()
         
         let task = DispatchWorkItem { [weak self] in
-            _ = self?.validate()
+            _ = self?._validate()
         }
         debounceTimer = task
         
@@ -51,15 +61,17 @@ final class CustomTextFieldModel {
 }
 
 struct CustomTextField: View {
+    let backgroundColor: Color
     @Binding var fieldModel: CustomTextFieldModel
     @FocusState var isFocused: Bool
     
-    init(fieldModel: Binding<CustomTextFieldModel>) {
+    init(fieldModel: Binding<CustomTextFieldModel>, backgroundColor: Color = .white) {
         self._fieldModel = fieldModel
+        self.backgroundColor = backgroundColor
     }
     
     private var boardColor: Color {
-        if fieldModel.showError {
+        if fieldModel.isShowError {
             return .red
         } else if isFocused {
             return .blue
@@ -79,10 +91,11 @@ struct CustomTextField: View {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(boardColor, lineWidth: 1)
                 }
+                .background(backgroundColor)
                 .animation(.bouncy, value: isFocused)
-                .animation(.bouncy, value: fieldModel.showError)
+                .animation(.bouncy, value: fieldModel.isShowError)
             
-            if let errorMessage = fieldModel.errorMessage, fieldModel.showError {
+            if let errorMessage = fieldModel.errorMessage, fieldModel.isShowError {
                 Text(errorMessage)
                     .font(.system(size: 14))
                     .foregroundStyle(.red)

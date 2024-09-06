@@ -16,8 +16,6 @@ final class EditRecipeInfoScreenModel {
     var tags: [Tag] = []
     
     //MARK: error state
-    var isNameError: Bool = false
-    var isDescriptionError: Bool = false
     var isCategoryError: Bool = false
 
     init(
@@ -45,8 +43,13 @@ final class EditRecipeInfoScreenModel {
         self.tags = tags
     }
 
-    var isDone: Bool {
-        !(!name.validate() || category == nil || cookingTime == 0)
+    func validate() -> Bool {
+        isCategoryError = category == nil
+        return !(!name.validate() || isCategoryError)
+    }
+    
+    func onCategoryChanged() {
+        isCategoryError = category == nil
     }
     
     func addTags(tagText: String, tags: [Tag], dataHandler: RecipeDataHandler) async throws {
