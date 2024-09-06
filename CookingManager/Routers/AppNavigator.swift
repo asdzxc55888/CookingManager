@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppNavigator: View {
     @State private var navigator: Navigator = .init()
+    
     var body: some View {
         NavigationStack(path: $navigator.path) {
             MainView()

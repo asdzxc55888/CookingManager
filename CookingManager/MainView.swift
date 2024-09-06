@@ -28,7 +28,6 @@ struct MainView: View {
             MenuRowView()
         }
         .environment(mainRouter)
-        .environment(\.dataProvider, dataProvider)
     }
 }
 

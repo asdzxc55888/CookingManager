@@ -22,10 +22,13 @@ struct CookingManagerApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+    let dataProvider = DataProvider.shared
 
     var body: some Scene {
         WindowGroup {
             AppNavigator()
+                .environment(\.dataProvider, dataProvider)
+                .modelContainer(dataProvider.sharedModelContainer)
         }
     }
 }
