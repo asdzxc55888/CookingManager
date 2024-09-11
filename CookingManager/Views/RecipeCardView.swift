@@ -161,7 +161,7 @@ struct RecipeCardView: View {
         ForEach(0...4, id: \.self) { index in
             RecipeCardView(
                 index: index,
-                recipeId: .init(uuidString: "ebd50a26-89a3-48df-a12f-6e1f3054a85d")!,
+                recipeId: Recipe.mock.id,
                 actionIcon: "plus.circle.fill",
                 onPress: {
                     print("onPress action button!")
@@ -170,5 +170,5 @@ struct RecipeCardView: View {
             .frame(width: 350, height: 96)
         }
     }
-    .modelContainer(ModelContainerService.previewModelContainer)
+    .modelContainer(DataProvider.shared.previewModelContainer)
 }
